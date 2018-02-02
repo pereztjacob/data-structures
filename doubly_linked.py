@@ -15,7 +15,6 @@ class ListOne(object):
         while current_node is not None:
             print(current_node.data)
             current_node = current_node.next
-        print(None)
 
     def add(self, data):
         node = Node(data, None, None)
@@ -40,6 +39,22 @@ class ListOne(object):
 
             current_node = current_node.next
 
+    def shift(self):
+
+        if self.tail is None:
+            raise Exception("empty list")
+        
+        node = self.tail
+
+        if self.tail.prev is not None:
+            self.tail.prev.next = None
+        self.tail = self.tail = self.tail.prev
+
+        if self.tail is None:
+            self.head = None
+        
+        return node
+
 s = ListOne()
 s.add(31)
 s.add(2)
@@ -47,5 +62,7 @@ s.add(3)
 s.add(4)
 
 s.display()
+print("::::::::")
 s.delete(31)
+s.shift()
 s.display()

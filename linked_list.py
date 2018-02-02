@@ -9,25 +9,17 @@ class Linked_List:
     head = None
     tail = None
 
-    # def len(self):
-    #     return self.size
-
     def display(self):
         current_node = self.head
         while current_node is not None:
             print(current_node.data)
             current_node = current_node.next
 
+# ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     def push(self, data):
-        node = Node(data,None)
-        current_node = self.head
-        previous_node = None
-        if self.head is None:
-            self.head = self.tail = node
-        else:
-            while current_node is not None:
-                previous_node = current_node
-                current_node = current_node.next
+                
+# ///////////////////////////////////////////////////////////////////////////////////
 
     def append(self,data):
         node = Node(data,None)
@@ -35,7 +27,7 @@ class Linked_List:
             self.head = self.tail = node
         else:
             self.tail.next = node
-        self.tail = node
+            self.tail = node
 
     def remove(self, node_value):
         current_node = self.head
@@ -52,8 +44,6 @@ class Linked_List:
 
 s = Linked_List()
 s.push(1)
-s.push(2)
 s.push(3)
-s.display()
-s.delete(2)
+s.push(5)
 s.display()

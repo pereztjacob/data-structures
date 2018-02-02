@@ -9,6 +9,7 @@ class ListOne(object):
 
     head = None
     tail = None
+    size = 0
 
     def display(self):
         current_node = self.head
@@ -25,6 +26,7 @@ class ListOne(object):
             node.next = None
             self.tail.next = node
             self.tail = node
+        self.size += 1
 
     def delete(self, node_value):
         current_node = self.head
@@ -38,6 +40,7 @@ class ListOne(object):
                     current_node.next.prev = None
 
             current_node = current_node.next
+            self.size -= 1
 
     def shift(self):
 
@@ -53,14 +56,35 @@ class ListOne(object):
         if self.tail is None:
             self.head = None
         
+        self.size -= 1
         return node
+
+    def push(self, data):
+        node = Node(data, None, None)
+        if self.head is None:
+            self.head = node
+        else:
+            node.next = self.head
+            self.head = node
+        self.size += 1
+
+    def pop(self):
+        if self.head is None:
+            return None
+        else:
+            node = self.head
+            self.head = self.head.next
+            self.size -= 1
+            return node
+
 
 s = ListOne()
 s.add(31)
 s.add(2)
 s.add(3)
-s.add(4)
-
+s.push(4)
+s.display()
+s.pop()
 s.display()
 print("::::::::")
 s.delete(31)

@@ -79,14 +79,42 @@ class ListOne(object):
 
 
 s = ListOne()
-s.add(31)
-s.add(2)
+
+s.add(1)
+s.display()
+s.push(2)
+s.display()
 s.add(3)
-s.push(4)
+s.display()
+s.delete(1)
 s.display()
 s.pop()
 s.display()
-print("::::::::")
-s.delete(31)
 s.shift()
 s.display()
+
+# //////////////////////////// STACK ///////////////////////////////
+
+# s.add(1)
+# s.add(2)
+# s.add(3)
+# s.add(4)
+# s.add(5)
+# s.display()
+# s.shift()
+# s.shift()
+# s.shift()
+# s.display()
+
+# //////////////////////////// QUEUE ///////////////////////////////
+
+# s.add(1)
+# s.add(2)
+# s.add(3)
+# s.add(4)
+# s.add(5)
+# s.display()
+# s.pop()
+# s.pop()
+# s.pop()
+# s.display()

@@ -11,13 +11,23 @@ class ListOne(object):
     tail = None
     size = 0
 
-    def display(self):
-        current_node = self.head
-        while current_node is not None:
-            print(current_node.data)
-            current_node = current_node.next
+# //////////////////// PEEK FUNCTIONS//////////////////////
 
-    def add(self, data):
+    def peekleft(self):
+        if self.head is not None:
+            print(self.head.data)
+        else:
+            raise Exception('List empty')
+
+    def peek(self):
+        if self.tail is not None:
+            print(self.tail.data)
+        else:
+            raise Exception('List empty')
+
+# ////////////////////// APPEND FUNCTIONS ///////////////////////
+
+    def append(self, data):
         node = Node(data, None, None)
         if self.head is None:
             self.head = self.tail = node
@@ -28,24 +38,20 @@ class ListOne(object):
             self.tail = node
         self.size += 1
 
-    def delete(self, node_value):
-        current_node = self.head
-        while current_node is not None:
-            if current_node.data == node_value:
-                if current_node.prev is not None:
-                    current_node.prev.next = current_node.next
-                    current_node.next.prev = current_node.prev
-                else:
-                    self.head = current_node.next
-                    current_node.next.prev = None
+    def appendleft(self, data):
+        node = Node(data, None, None)
+        if self.head is None:
+            self.head = node
+        else:
+            node.next = self.head
+            self.head = node
+        self.size += 1
 
-            current_node = current_node.next
-            self.size -= 1
+# ///////////////////// REMOVE FUNCTIONS ///////////////////////
 
-    def shift(self):
-
+    def pop(self):
         if self.tail is None:
-            raise Exception("empty list")
+            raise Exception("List empty")
         
         node = self.tail
 
@@ -59,16 +65,7 @@ class ListOne(object):
         self.size -= 1
         return node
 
-    def push(self, data):
-        node = Node(data, None, None)
-        if self.head is None:
-            self.head = node
-        else:
-            node.next = self.head
-            self.head = node
-        self.size += 1
-
-    def pop(self):
+    def popleft(self):
         if self.head is None:
             return None
         else:
@@ -80,41 +77,13 @@ class ListOne(object):
 
 s = ListOne()
 
-# s.add(1)
-# s.display()
-# s.push(2)
-# s.display()
-# s.add(3)
-# s.display()
-# s.delete(1)
-# s.display()
-# s.pop()
-# s.display()
-# s.shift()
-# s.display()
-
-# //////////////////////////// STACK ///////////////////////////////
-
-s.add(1)
-s.add(2)
-s.add(3)
-s.add(4)
-s.add(5)
-s.display()
-s.shift()
-s.shift()
-s.shift()
-s.display()
-
-# //////////////////////////// QUEUE ///////////////////////////////
-
-# s.add(1)
-# s.add(2)
-# s.add(3)
-# s.add(4)
-# s.add(5)
-# s.display()
-# s.pop()
-# s.pop()
-# s.pop()
-# s.display()
+s.append(3)
+s.appendleft(2)
+s.append(4)
+s.appendleft(1)
+s.peekleft()
+s.peek()
+s.pop()
+s.popleft()
+s.peekleft()
+s.peek()

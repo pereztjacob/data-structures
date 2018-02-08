@@ -11,7 +11,7 @@ class ListOne(object):
     tail = None
     size = 0
 
-# //////////////////// DISPLAY FUNCTIONS//////////////////////
+# //////////////////// FUNCTIONS//////////////////////
 
     def display(self):
         current_node = self.head

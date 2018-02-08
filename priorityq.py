@@ -1,9 +1,10 @@
 class Node(object):
 
-    def __init__(self, data, prev, next):
-        self.data = data
+    def __init__(self, priority, prev, next, data):
+        self.priority = priority
         self.prev = prev
         self.next = next
+        self.data = data
 
 class ListOne(object):
 
@@ -21,8 +22,8 @@ class ListOne(object):
 
 # ////////////////////// APPEND FUNCTIONS ///////////////////////
 
-    def append(self, data):
-        node = Node(data, None, None)
+    def append(self, priority, data):
+        node = Node(priority, None, None, data)
         if self.head is None:
             self.head = self.tail = node
         else:
@@ -32,13 +33,13 @@ class ListOne(object):
             self.tail = node
         self.size += 1
 
-    def appendleft(self, data):
-        node = Node(data, None, None)
+    def appendleft(self, priority, data):
+        node = Node(priority, None, None, data)
         current_node = self.head
         if self.head is None:
             self.head = node
         else:
-            while node.data > current_node.data:
+            while node.priority > current_node.priority:
                 current_node = current_node.next
             node.prev = current_node.prev
             node.next = current_node
@@ -49,11 +50,8 @@ class ListOne(object):
 
 s = ListOne()
 
-s.append(1)
-s.append(3)
-s.append(5)
-s.append(7)
-s.append(9)
-s.display()
-s.appendleft(4)
+s.append(1, 4)
+s.append(2, 3)
+s.append(4, 1)
+s.appendleft(3, 2)
 s.display()

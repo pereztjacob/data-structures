@@ -11,19 +11,13 @@ class ListOne(object):
     tail = None
     size = 0
 
-# //////////////////// PEEK FUNCTIONS//////////////////////
+# //////////////////// DISPLAY FUNCTIONS//////////////////////
 
-    def peekleft(self):
-        if self.head is not None:
-            print(self.head.data)
-        else:
-            raise Exception('List empty')
-
-    def peek(self):
-        if self.tail is not None:
-            print(self.tail.data)
-        else:
-            raise Exception('List empty')
+    def display(self):
+        current_node = self.head
+        while current_node is not None:
+            print(current_node.data)
+            current_node = current_node.next
 
 # ////////////////////// APPEND FUNCTIONS ///////////////////////
 
@@ -40,50 +34,26 @@ class ListOne(object):
 
     def appendleft(self, data):
         node = Node(data, None, None)
+        current_node = self.head
         if self.head is None:
             self.head = node
         else:
-            node.next = self.head
-            self.head = node
+            while node.data > current_node.data:
+                current_node = current_node.next
+            node.prev = current_node.prev
+            node.next = current_node
+            current_node.prev.next = node
+            current_node.prev = node
+
         self.size += 1
-
-# ///////////////////// REMOVE FUNCTIONS ///////////////////////
-
-    def pop(self):
-        if self.tail is None:
-            raise Exception("List empty")
-        
-        node = self.tail
-
-        if self.tail.prev is not None:
-            self.tail.prev.next = None
-        self.tail = self.tail = self.tail.prev
-
-        if self.tail is None:
-            self.head = None
-        
-        self.size -= 1
-        return node
-
-    def popleft(self):
-        if self.head is None:
-            return None
-        else:
-            node = self.head
-            self.head = self.head.next
-            self.size -= 1
-            return node
-
 
 s = ListOne()
 
+s.append(1)
 s.append(3)
-s.appendleft(2)
-s.append(4)
-s.appendleft(1)
-s.peekleft()
-s.peek()
-s.pop()
-s.popleft()
-s.peekleft()
-s.peek()
+s.append(5)
+s.append(7)
+s.append(9)
+s.display()
+s.appendleft(4)
+s.display()
